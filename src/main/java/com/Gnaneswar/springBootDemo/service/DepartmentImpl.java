@@ -49,7 +49,7 @@ public class DepartmentImpl implements departmentService{
 				!"".equalsIgnoreCase(department.getDepartmentAddress())) {
 				deptFromDb.setDepartmentAddress(department.getDepartmentAddress());
 			}
-		
+		 
 		return repo.save(deptFromDb);
 	}
 	@Override

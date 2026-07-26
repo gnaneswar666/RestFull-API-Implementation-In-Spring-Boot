@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Gnaneswar.springBootDemo.Model.Department;
 import com.Gnaneswar.springBootDemo.service.departmentService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/department")
 public class DepartmentController {
@@ -23,7 +25,7 @@ public class DepartmentController {
 	@Autowired
 	private departmentService service;
 	@PostMapping()
-	public Department saveDepartment(@RequestBody Department department){
+	public Department saveDepartment(@Valid @RequestBody Department department){
 	
 	return service.saveDepartment(department);
 	}
