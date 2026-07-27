@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Gnaneswar.springBootDemo.Model.Department;
+import com.Gnaneswar.springBootDemo.error.DepartmentNameNotFound;
+import com.Gnaneswar.springBootDemo.error.DepartmentNotFoundException;
 import com.Gnaneswar.springBootDemo.repository.DepartmentRepository;
 
 @Service
@@ -26,8 +28,13 @@ public class DepartmentImpl implements departmentService{
 		return repo.findAll();
 	}
 	@Override
-	public Optional<Department> getDepartmentById(Long DepartmentId) {
-		return repo.findById(DepartmentId); 
+	public Department getDepartmentById(Long DepartmentId) throws DepartmentNotFoundException{
+		 Optional<Department> dept=repo.findById(DepartmentId); 
+		 if(!dept.isPresent()) {
+			 throw new DepartmentNotFoundException("Department Not Found");
+		 }
+		 return dept.get();
+		 
 	}
 	@Override
 	public void deleteDepartmentId(Long departmentId) {
@@ -53,9 +60,10 @@ public class DepartmentImpl implements departmentService{
 		return repo.save(deptFromDb);
 	}
 	@Override
-	public Department getDepartmentByName(String name) {
+	public Department getDepartmentByName(String name)  {
 		// TODO Auto-generated method stub
-		return repo.findByDepartmentNameIgnoreCase(name);
+		return  repo.findByDepartmentNameIgnoreCase(name);
+		
 	}
 	
 }

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.Gnaneswar.springBootDemo.Model.Department;
+import com.Gnaneswar.springBootDemo.error.DepartmentNameNotFound;
+import com.Gnaneswar.springBootDemo.error.DepartmentNotFoundException;
 
 public interface departmentService {
 
@@ -11,12 +13,12 @@ public interface departmentService {
 
 	List<Department> getAllDepartments();
 
-	Optional<Department> getDepartmentById(Long departmentID);
+	Department getDepartmentById(Long departmentID) throws DepartmentNotFoundException;
 
 	void deleteDepartmentId(Long departmentID);
 
 	Department updateDepartment(Long departmentId, Department department);
 
-	Department getDepartmentByName(String name);
+	Department getDepartmentByName(String name) ;
 
 }

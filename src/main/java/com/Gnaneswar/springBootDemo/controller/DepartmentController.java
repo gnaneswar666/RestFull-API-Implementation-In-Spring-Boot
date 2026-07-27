@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Gnaneswar.springBootDemo.Model.Department;
+import com.Gnaneswar.springBootDemo.error.DepartmentNameNotFound;
+import com.Gnaneswar.springBootDemo.error.DepartmentNotFoundException;
 import com.Gnaneswar.springBootDemo.service.departmentService;
 
 import jakarta.validation.Valid;
@@ -36,9 +38,9 @@ public class DepartmentController {
 		return service.getAllDepartments();
 	}
 	@GetMapping("/{departmentID}")
-	public Department getDepartmentByID(@PathVariable Long departmentID) {
-		Optional<Department> dept= service.getDepartmentById(departmentID);
-		return dept.orElse(new Department());
+	public Department getDepartmentByID(@PathVariable Long departmentID) throws DepartmentNotFoundException{
+		return service.getDepartmentById(departmentID);
+		
 		}
 
 	@DeleteMapping("/{departmentID}")
