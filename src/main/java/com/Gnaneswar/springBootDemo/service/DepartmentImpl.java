@@ -43,6 +43,7 @@ public class DepartmentImpl implements departmentService{
 	@Override
 	public Department updateDepartment(Long departmentId, Department department) {
 		// TODO Auto-generated method stub
+		
 		Department deptFromDb=repo.findById(departmentId).get();
 		if(Objects.nonNull(department.getDepartmentCode())&&
 			!"".equalsIgnoreCase(department.getDepartmentCode())) {
